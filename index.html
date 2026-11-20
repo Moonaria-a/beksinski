@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zdzisław Beksiński | Distopik Sürrealizm Arşivi</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', 'Segoe UI', Tahoma, sans-serif; }
+html { scroll-behavior: smooth; }
+
+:root {
+    --bg-dark: #0c0b0a;
+    --bg-card: #171513;
+    --accent: #c88a55;
+    --accent-2: #a8512f;
+    --accent-soft: rgba(200, 138, 85, 0.14);
+    --text-main: #eae4dc;
+    --text-muted: #9a9187;
+    --border: rgba(200, 138, 85, 0.22);
+    --water: linear-gradient(165deg, #120d09 0%, #3b2314 50%, #8c3b2a 100%);
+}
+
+body {
+    background:
+        radial-gradient(900px 500px at 85% -10%, rgba(200,138,85,.13), transparent 60%),
+        radial-gradient(700px 500px at -10% 40%, rgba(140,59,42,.14), transparent 60%),
+        var(--bg-dark);
+    background-attachment: fixed;
+    color: var(--text-main);
+    line-height: 1.7;
+    display: flex; flex-direction: column; min-height: 100vh;
+}
+
+h1, h2, h3, .logo { font-family: Georgia, 'Playfair Display', 'Times New Roman', serif; }
+
+/* Navigasyon */
+header {
+    background: rgba(12,11,10,.85);
+    border-bottom: 1px solid var(--border);
+    position: sticky; top: 0; z-index: 100;
+    backdrop-filter: blur(12px);
+}
+.navbar { max-width: 1150px; margin: 0 auto; padding: 18px 24px; display: flex; justify-content: space-between; align-items: center; }
+.logo { font-size: 1.4rem; font-weight: 700; letter-spacing: 3px; color: var(--text-main); text-decoration: none; text-transform: uppercase; }
+.logo span { color: var(--accent); }
+.nav-links { list-style: none; display: flex; gap: 28px; }
+.nav-links a { text-decoration: none; color: var(--text-muted); font-size: .95rem; font-weight: 500; padding-bottom: 4px; border-bottom: 2px solid transparent; transition: color .3s, border-color .3s; }
+.nav-links a:hover, .nav-links a.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+main { flex: 1; max-width: 1150px; width: 100%; margin: 0 auto; padding: 48px 24px; animation: fadeUp .7s ease both; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+
+/* Hero */
+.hero { display: grid; grid-template-columns: 1.2fr 1fr; gap: 48px; align-items: center; padding: 40px 0 64px; border-bottom: 1px solid var(--border); }
+.hero-tag { display: inline-block; background: var(--accent-soft); color: var(--accent); padding: 6px 14px; border-radius: 20px; font-size: .85rem; letter-spacing: 1px; margin-bottom: 16px; border: 1px solid rgba(200,138,85,.3); }
+.hero h1 { font-size: 3.1rem; line-height: 1.12; margin-bottom: 18px; background: linear-gradient(120deg, #fff 30%, var(--accent) 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.hero p { color: var(--text-muted); font-size: 1.05rem; margin-bottom: 28px; }
+
+.btn { display: inline-block; background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #0c0b0a; padding: 12px 26px; border-radius: 4px; text-decoration: none; font-weight: 600; border: none; cursor: pointer; transition: transform .2s, box-shadow .2s; box-shadow: 0 6px 20px rgba(200,138,85,.25); }
+.btn:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(200,138,85,.4); }
+.btn-outline { background: transparent; color: var(--accent); border: 1px solid var(--accent); margin-left: 12px; box-shadow: none; }
+
+/* Görseller: dosya yoksa su temalı gradyan görünür */
+.hero-image, .card img, .about-img {
+    background:
+        radial-gradient(circle at 50% 25%, rgba(255,190,130,.22), transparent 65%),
+        var(--water);
+    color: rgba(255,255,255,.7);
+    font-size: .8rem;
+}
+.hero-image { width: 100%; height: 440px; object-fit: cover; border-radius: 18px; border: 1px solid var(--border); box-shadow: 0 30px 60px -20px rgba(200,138,85,.3); }
+
+/* Başlıklar */
+.section-title { font-size: 2.1rem; margin-bottom: 10px; border-left: 4px solid var(--accent); padding-left: 14px; }
+.section-subtitle { color: var(--text-muted); margin-bottom: 32px; padding-left: 18px; }
+
+/* Kartlar */
+.grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 26px; margin-top: 24px; }
+.card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; transition: transform .35s, border-color .35s, box-shadow .35s; }
+.card:hover { transform: translateY(-6px); border-color: var(--accent); box-shadow: 0 20px 40px -18px rgba(200,138,85,.4); }
+.card img { width: 100%; height: 260px; object-fit: cover; display: block; transition: transform .6s ease; }
+.card { overflow: hidden; }
+.card:hover img { transform: scale(1.06); }
+.card-body { padding: 20px; position: relative; background: var(--bg-card); }
+.card-body h3 { font-size: 1.2rem; margin-bottom: 8px; }
+.card-body p { color: var(--text-muted); font-size: .92rem; }
+.badge { display: inline-block; font-size: .75rem; color: var(--accent-2); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
+
+/* Hakkında */
+.about-layout { display: grid; grid-template-columns: 1fr 1.4fr; gap: 44px; align-items: start; margin-top: 24px; }
+.about-img { width: 100%; border-radius: 18px; border: 1px solid var(--border); min-height: 420px; object-fit: cover; box-shadow: 0 30px 60px -25px rgba(0,0,0,.7); }
+.info-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 24px; margin-top: 24px; }
+.info-box h3 { color: var(--accent); margin-bottom: 12px; }
+.info-box ul { list-style: none; }
+.info-box ul li { padding: 9px 0; border-bottom: 1px solid var(--border); color: var(--text-muted); }
+.info-box ul li:last-child { border-bottom: none; }
+.info-box ul li strong { color: var(--text-main); }
+
+/* İletişim */
+.contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 36px; margin-top: 24px; }
+.contact-form { background: var(--bg-card); padding: 30px; border-radius: 14px; border: 1px solid var(--border); }
+.form-group { margin-bottom: 18px; }
+.form-group label { display: block; margin-bottom: 6px; font-size: .9rem; }
+.form-group input, .form-group textarea { width: 100%; padding: 12px 14px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg-dark); color: var(--text-main); font-size: .95rem; transition: border-color .2s, box-shadow .2s; }
+.form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+
+footer { background: #070606; border-top: 1px solid var(--border); text-align: center; padding: 24px; color: var(--text-muted); font-size: .88rem; }
+footer strong { color: var(--text-main); }
+
+@media (max-width: 768px) {
+    .hero, .about-layout, .contact-grid { grid-template-columns: 1fr; }
+    .navbar { flex-direction: column; gap: 14px; }
+    .nav-links { gap: 16px; flex-wrap: wrap; justify-content: center; }
+    .hero h1 { font-size: 2.2rem; }
+    .hero-image { height: 280px; }
+}
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+
+/* Tek sayfa geçişi */
+.page { display: none; }
+.page.active { display: block; animation: fadeUp .6s ease both; }
+
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="navbar">
+    <a href="#anasayfa" class="logo">Zdzisław <span>Beksiński</span></a>
+    <ul class="nav-links">
+      <li><a href="#anasayfa" data-page="anasayfa">Ana Sayfa</a></li>
+      <li><a href="#hakkinda" data-page="hakkinda">Sanatçı Hakkında</a></li>
+      <li><a href="#eserler" data-page="eserler">Eserler</a></li>
+      <li><a href="#iletisim" data-page="iletisim">Müze &amp; İletişim</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+
+<div class="page" id="anasayfa">
+  <section class="hero">
+    <div>
+      <span class="hero-tag">Distopik Sürrealizm • 1929–2005</span>
+      <h1>Rüyaları Fotoğraflamak İstiyorum</h1>
+      <p>Polonyalı ressam, fotoğrafçı ve heykeltıraş Zdzisław Beksiński; terk edilmiş katedraller, kemiksi mimari yapılar ve tekinsiz atmosferlerle 20. yüzyılın en özgün karanlık sürrealizm dünyasını inşa etti.</p>
+      <a href="#eserler" class="btn">Eserleri İncele</a>
+      <a href="#hakkinda" class="btn btn-outline">Biyografi</a>
+    </div>
+    <img src="img/kapak.jpg" alt="Zdzisław Beksiński Tablosu" class="hero-image">
+  </section>
+  <section style="margin-top:56px;">
+    <h2 class="section-title">Öne Çıkan Dönem Çalışmaları</h2>
+    <p class="section-subtitle">Beksiński eserlerine isim vermemiş, izleyiciyi kendi yorumuyla baş başa bırakmıştır.</p>
+    <div class="grid-3">
+<article class="card"><img src="img/eser1.jpg" alt="İsimsiz Katedral Serisi"><div class="card-body"><span class="badge">Fantastik Dönem • Yağlı Boya</span><h3>İsimsiz (Gotik Mimari)</h3><p>Devasa, organik dokulu katedral yapıları ve puslu atmosferle kurulan ölçek hissi.</p></div></article>
+<article class="card"><img src="img/eser2.jpg" alt="İsimsiz Figüratif Çalışma"><div class="card-body"><span class="badge">Fantastik Dönem • Yağlı Boya</span><h3>İsimsiz (Figür ve Boşluk)</h3><p>Zaman kavramının silindiği, çorak peyzajlar içinde beliren tekinsiz insan silüetleri.</p></div></article>
+<article class="card"><img src="img/eser3.jpg" alt="Dijital Fotomontaj Dönemi"><div class="card-body"><span class="badge">1990'lar • Dijital Sanat</span><h3>İsimsiz (Dijital Fotomontaj)</h3><p>Sanatçının son dönemlerinde bilgisayar teknolojisiyle ürettiği deneysel görsel kurgular.</p></div></article>
+    </div>
+  </section>
+</div>
+
+<div class="page" id="hakkinda">
+  <h1 class="section-title">Sanatçı Hakkında</h1>
+  <p class="section-subtitle">Mimarlık eğitiminden karanlık sürrealizmin zirvesine uzanan bir üretim disiplini.</p>
+  <section class="about-layout">
+    <img src="img/sanatci.jpg" alt="Zdzisław Beksiński Portresi" class="about-img">
+    <div>
+      <p style="margin-bottom:18px;"><strong>Zdzisław Beksiński</strong> (24 Şubat 1929 – 21 Şubat 2005), Polonya'nın Sanok kentinde doğdu. Kraków Politeknik Üniversitesi'nde mimarlık eğitimi aldıktan sonra sanat hayatına fotoğrafçılık, karakalem çizim ve heykel ile başladı. Mimarlık geçmişi, ilerleyen yıllarda tablolarındaki anıtsal ve ürkütücü yapıların temelini oluşturdu.</p>
+      <p style="margin-bottom:18px;">1960'ların sonundan 1980'lere kadar uzanan ve kendi deyimiyle <strong>"Fantastik Dönem"</strong> olarak adlandırdığı süreçte, bugün dünyaca tanınan yağlı boya eserlerini üretti. Çalışırken sessizlikten kaçındığı ve sürekli klasik müzik dinlediği bilinir. Eserlerinin hiçbirine isim vermeyerek, izleyicinin metinle yönlendirilmeden doğrudan görsel atmosferle yüzleşmesini istedi.</p>
+      <p style="margin-bottom:18px;">1990'lı yıllarda geleneksel tuvalin yanına bilgisayar destekli dijital fotomontajı da ekleyerek yeni medya araçlarını sanatına entegre eden öncü ressamlardan biri oldu.</p>
+      <div class="info-box">
+        <h3>Sanatçı Kimliği</h3>
+        <ul>
+          <li><strong>Doğum / Ölüm:</strong> 1929 (Sanok) – 2005 (Varşova), Polonya</li>
+          <li><strong>Eğitim:</strong> Mimarlık (Kraków)</li>
+          <li><strong>Akım:</strong> Distopik Sürrealizm, Fantastik Gerçekçilik</li>
+          <li><strong>Teknikler:</strong> Yağlı boya, karakalem çizim, fotoğraf, heykel, dijital fotomontaj</li>
+          <li><strong>Ana Koleksiyon:</strong> Sanok Tarih Müzesi (Muzeum Historyczne w Sanoku)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="page" id="eserler">
+  <h1 class="section-title">Eser Galerisi</h1>
+  <p class="section-subtitle">Sanatçının "İsimsiz" (Untitled) olarak bıraktığı yağlı boya ve dijital seçkisi.</p>
+  <section class="grid-3">
+<article class="card"><img src="img/eser1.jpg" alt="Untitled 1"><div class="card-body"><span class="badge">Yağlı Boya • 1970'ler</span><h3>İsimsiz (Katedral)</h3><p>Gotik mimarinin organik ve kemiksi dokularla iç içe geçtiği anıtsal kompozisyon.</p></div></article>
+<article class="card"><img src="img/eser2.jpg" alt="Untitled 2"><div class="card-body"><span class="badge">Yağlı Boya • 1970'ler</span><h3>İsimsiz (Çorak Peyzaj)</h3><p>Sıcak toprak tonları ve koyu gölgelerle yaratılan kıyamet sonrası atmosfer.</p></div></article>
+<article class="card"><img src="img/eser3.jpg" alt="Untitled 3"><div class="card-body"><span class="badge">Yağlı Boya • 1980'ler</span><h3>İsimsiz (Trompetçi Figür)</h3><p>Sürrealist anatomi ve yoğun doku kullanımıyla dikkat çeken figüratif çalışma.</p></div></article>
+<article class="card"><img src="img/eser4.jpg" alt="Untitled 4"><div class="card-body"><span class="badge">Yağlı Boya • 1980'ler</span><h3>İsimsiz (Karanlık Geçit)</h3><p>Derin perspektif ve dramatik ışık kaynağıyla kurgulanan mimari boşluk.</p></div></article>
+<article class="card"><img src="img/eser5.jpg" alt="Untitled 5"><div class="card-body"><span class="badge">Karakalem / Çizim</span><h3>İsimsiz (Erken Dönem Eskiz)</h3><p>Sanatçının çizgi disiplini ve form araştırmalarını yansıtan erken dönem çalışması.</p></div></article>
+<article class="card"><img src="img/eser6.jpg" alt="Untitled 6"><div class="card-body"><span class="badge">Dijital Fotomontaj • 1990'lar</span><h3>İsimsiz (Dijital Seri)</h3><p>Bilgisayar destekli görsel manipülasyonla üretilmiş geç dönem eseri.</p></div></article>
+  </section>
+</div>
+
+<div class="page" id="iletisim">
+  <h1 class="section-title">Müze ve İletişim</h1>
+  <p class="section-subtitle">Beksiński'nin en kapsamlı koleksiyonu ve proje iletişim bilgileri.</p>
+  <section class="contact-grid">
+    <div class="info-box" style="margin-top:0;">
+      <h3>Kalıcı Sergi &amp; Arşiv</h3>
+      <p style="color:var(--text-muted);margin-bottom:18px;">Zdzisław Beksiński'nin tüm sanatsal mirası ve yüzlerce orijinal eseri, vasiyeti üzerine doğduğu şehirdeki Sanok Tarih Müzesi'nde sergilenmektedir.</p>
+      <ul>
+        <li><strong>Müze:</strong> Muzeum Historyczne w Sanoku (Sanok Kalesi)</li>
+        <li><strong>Konum:</strong> Sanok, Polonya</li>
+        <li><strong>Proje Sahibi:</strong> Ömer Ertan Koç (25090905012)</li>
+        <li><strong>Bölüm:</strong> İstanbul Yeni Yüzyıl Üniversitesi — Yeni Medya ve İletişim</li>
+      </ul>
+    </div>
+    <form class="contact-form" action="#" method="post">
+      <h3 style="margin-bottom:18px;color:var(--accent);">Arşiv &amp; Proje İletişim Formu</h3>
+      <div class="form-group"><label for="ad">Ad Soyad</label><input type="text" id="ad" name="ad" placeholder="Adınız ve soyadınız" required></div>
+      <div class="form-group"><label for="email">E-posta Adresi</label><input type="email" id="email" name="email" placeholder="ornek@eposta.com" required></div>
+      <div class="form-group"><label for="mesaj">Mesajınız</label><textarea id="mesaj" name="mesaj" rows="5" placeholder="Sergi veya proje hakkında mesajınızı yazın..." required></textarea></div>
+      <button type="submit" class="btn">Gönder</button>
+    </form>
+  </section>
+</div>
+
+</main>
+
+<footer>
+  <p>© 2026 Zdzisław Beksiński Sanatçı Tanıtım Sitesi | Hazırlayan: <strong>Ömer Ertan Koç</strong> — Yeni Medya ve İletişim</p>
+</footer>
+
+<script>
+  const pages = ['anasayfa', 'hakkinda', 'eserler', 'iletisim'];
+  function showPage() {
+    let id = location.hash.replace('#', '');
+    if (!pages.includes(id)) id = 'anasayfa';
+    document.querySelectorAll('.page').forEach(p => p.classList.toggle('active', p.id === id));
+    document.querySelectorAll('.nav-links a').forEach(a => a.classList.toggle('active', a.dataset.page === id));
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  window.addEventListener('hashchange', showPage);
+  showPage();
+</script>
+</body>
+</html>
